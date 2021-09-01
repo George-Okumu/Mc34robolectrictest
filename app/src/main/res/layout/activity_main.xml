@@ -10,17 +10,54 @@
         android:id="@+id/mainActivityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="69dp"
         android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="312dp"
+        android:inputType="text"
+        android:background="@color/purple_700"
+        android:ems="10"
+        android:paddingBottom="12px"
+        android:hint="Your Name"
+        android:textColorHint="@color/white"
+        android:textSize="96px" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="424dp"
+        android:background="@color/purple_700"
+        android:ems="10"
+        android:hint="Your Email"
+        android:inputType="textEmailAddress"
+        android:paddingBottom="12px"
+        android:textColorHint="@color/white"
+        android:textSize="96px" />
 
     <Button
         android:id="@+id/secondActivityButton"
-        android:layout_width="wrap_content"
-        android:text="Register Here"
-        android:textColor="@color/white"
-        android:layout_height="wrap_content"/>
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="Register here!"
+        android:textColor="@color/white" />
+
 
 </RelativeLayout>
