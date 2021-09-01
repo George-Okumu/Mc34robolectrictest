@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
@@ -18,11 +19,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 //@Run with is required only if you use a mix of junit3 and junit 4
-//SmallTest: this test doesn't interact with any file system or network.
-//MediumTest: Accesses file systems on box which is running tests.
-//LargeTest: Accesses external file systems, networks, etc.
-//We use LargeTest annotation bcoz our test interacts with the networks and emulator.
-
+//@SmallTest, @MediumTest, and @LargeTest: Classify how long a test should take to run, and consequently, how frequently you can run the test.
+// Test Refference <!- https://developer.android.com/training/testing/junit-runner ->
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 
@@ -36,7 +34,7 @@ public class MainActivityInstrumentedTest {
 @Test
     public void validateNameEditText(){
     onView(withId(R.id.editText))
-            .perform(typeText("George"))
+            .perform(typeText("George"), closeSoftKeyboard())
             .check(matches(withText("George")));
 }
 //Checks if the email typed is the string to be typed.
@@ -54,5 +52,20 @@ public class MainActivityInstrumentedTest {
         onView(withId(R.id.editEmail))
                 .perform(click())
                 .check(matches(isDisplayed()));
+    }
+
+    //Checking if text to be passed to next activity is successfull
+    @Test
+    public void checkIfEditedTextIsSuccessfullyPassedToRegisterActivity(){
+    String name = "George";
+    onView(withId(R.id.editText))
+            .perform(typeText(name), closeSoftKeyboard());
+
+    onView(withId(R.id.secondActivityButton))
+            .perform(click());
+    //checking if text was changed.
+    onView(withId(R.id.registerTextView))
+            .check(matches(withText("In Register Activity " + name)));
+
     }
 }
