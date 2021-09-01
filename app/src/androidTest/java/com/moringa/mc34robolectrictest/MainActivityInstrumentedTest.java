@@ -13,6 +13,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
@@ -30,17 +31,28 @@ public class MainActivityInstrumentedTest {
 @Rule
     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<MainActivity>(MainActivity.class);
 
+// withId(R.id.my_view) is a ViewMatcher
+
 @Test
     public void validateNameEditText(){
     onView(withId(R.id.editText))
             .perform(typeText("George"))
             .check(matches(withText("George")));
 }
-
+//Checks if the email typed is the string to be typed.
 @Test
     public void validateEmail(){
     onView(withId(R.id.editEmail))
             .perform(typeText("gokumu@gmail.com"))
             .check(matches(withText("gokumu@gmail.com")));
 }
+// click() is a ViewAction
+// matches(isDisplayed()) is a ViewAssertion
+//The below test checks if the edit text is displayable when clicked.
+    @Test
+    public void onClickDisplaysEmail(){
+        onView(withId(R.id.editEmail))
+                .perform(click())
+                .check(matches(isDisplayed()));
+    }
 }
